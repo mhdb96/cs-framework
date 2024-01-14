@@ -1,0 +1,4 @@
+com\xdebuggers\core\datasource\OracleDataSourceConfig.class
+com\xdebuggers\core\datasource\H2DataSourceConfig.class
+com\xdebuggers\core\datasource\EnableCSDataSource.class
+com\xdebuggers\core\datasource\MssqlDataSourceConfig.class
