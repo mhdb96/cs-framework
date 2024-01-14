@@ -16,25 +16,49 @@ import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 
 import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * Configuration class for setting up H2 Data Source for CS (Custom Spring)
+ * framework.
+ * Enables JPA repositories for H2 and configures JdbcTemplate,
+ * EntityManagerFactory, and TransactionManager.
+ */
 @Configuration
 @ConditionalOnProperty(name = "cs.datasource.type", havingValue = "h2")
 @EnableJpaRepositories(basePackages = "com.xdebuggers.core.repository.h2", entityManagerFactoryRef = "h2EntityManagerFactory", transactionManagerRef = "h2TransactionManager")
 public class H2DataSourceConfig {
 
+    /**
+     * Configures the H2 DataSource based on the properties under "cs.datasource.h2"
+     * prefix.
+     *
+     * @return Configured H2 DataSource.
+     */
     @Bean(name = "h2DataSource")
     @ConfigurationProperties(prefix = "cs.datasource.h2")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
 
+    /**
+     * Configures a JdbcTemplate for the H2 DataSource.
+     *
+     * @param dataSource H2 DataSource.
+     * @return Configured JdbcTemplate.
+     */
     @Bean(name = "h2JdbcTemplate")
     public JdbcTemplate jdbcTemplate(@Qualifier("h2DataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
 
+    /**
+     * Configures the EntityManagerFactory for H2 based on JPA properties.
+     *
+     * @param builder       EntityManagerFactoryBuilder.
+     * @param dataSource    H2 DataSource.
+     * @param jpaProperties JPA properties.
+     * @return Configured LocalContainerEntityManagerFactoryBean.
+     */
     @Bean(name = "h2EntityManagerFactory")
     @ConfigurationProperties(prefix = "cs.datasource.jpa")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
@@ -49,6 +73,12 @@ public class H2DataSourceConfig {
                 .build();
     }
 
+    /**
+     * Configures the TransactionManager for H2.
+     *
+     * @param entityManagerFactory H2 EntityManagerFactory.
+     * @return Configured PlatformTransactionManager.
+     */
     @Bean(name = "h2TransactionManager")
     public PlatformTransactionManager transactionManager(
             @Qualifier("h2EntityManagerFactory") EntityManagerFactory entityManagerFactory) {

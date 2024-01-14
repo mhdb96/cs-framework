@@ -8,14 +8,16 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 /**
- * Configuration class for defining JavaMailSender.
+ * Configuration class for defining JavaMailSender for sending emails in CS
+ * (Custom Spring) framework.
  */
 @Configuration
 @Import(EmailProperties.class)
 public class EmailConfig {
 
     /**
-     * Creates and configures the JavaMailSender.
+     * Creates and configures the JavaMailSender based on the provided email
+     * properties.
      *
      * @param emailProperties Email properties.
      * @return Configured JavaMailSender.

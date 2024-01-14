@@ -8,9 +8,17 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Configuration class for setting up Infinispan cache configurations.
+ */
 @Configuration
 public class CacheConfig {
 
+    /**
+     * Configures the Infinispan cache manager with a local, synchronous cache mode.
+     *
+     * @return InfinispanCacheConfigurer instance.
+     */
     @Bean
     InfinispanCacheConfigurer cacheConfigurer() {
         return manager -> {
@@ -22,6 +30,11 @@ public class CacheConfig {
         };
     }
 
+    /**
+     * Configures a cache for long-term storage with a lifespan of 30 minutes.
+     *
+     * @return Configuration for the long-term cache.
+     */
     @Bean(name = "longterm-cache")
     org.infinispan.configuration.cache.Configuration longtermCache() {
         return new ConfigurationBuilder()
@@ -29,6 +42,11 @@ public class CacheConfig {
                 .build();
     }
 
+    /**
+     * Configures a cache for medium-term storage with a lifespan of 10 minutes.
+     *
+     * @return Configuration for the medium-term cache.
+     */
     @Bean(name = "mediumterm-cache")
     org.infinispan.configuration.cache.Configuration mediumtermCache() {
         return new ConfigurationBuilder()
@@ -36,6 +54,11 @@ public class CacheConfig {
                 .build();
     }
 
+    /**
+     * Configures a cache for short-term storage with a lifespan of 5 minutes.
+     *
+     * @return Configuration for the short-term cache.
+     */
     @Bean(name = "shortterm-cache")
     org.infinispan.configuration.cache.Configuration shorttermCache() {
         return new ConfigurationBuilder()
