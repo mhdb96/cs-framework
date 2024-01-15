@@ -1,20 +1,22 @@
-# core-email Module
+# Email Module
 
-The core-email module provides configurations for sending emails using Spring Boot's JavaMailSender. It includes the setup for an SMTP-based mail sender with customizable email properties.
+## Description
+
+The Email module facilitates email sending in CS Framework by configuring JavaMailSender through a straightforward EmailConfig class. It simplifies email properties management and promotes clean email sending code.
 
 ## Usage
 
-- Include this module as a dependency to enable email sending capabilities.
-- Utilize the EmailConfig class for configuring and creating the JavaMailSender.
+- Annotate your application with `@EnableCSEmail` to enable email configuration.
+- Customize email properties in the `application.yml` file under the `cs.email` prefix.
 
 ## Why to Use
 
-- Simplifies email sending functionality in your application.
-- Allows for easy customization of email properties such as host, port, and credentials.
+- Simplifies email configuration and sending in Java applications.
+- Improves maintainability by centralizing email configuration in one place.
+- Enhances code readability with clean and concise email sending code.
 
 ## How to Use
 
-1. Add this module as a dependency in your project.
-2. Import the EmailConfig class in your application configuration.
-3. Use **@Autowired** to inject the JavaMailSender where email sending is required.
-4. Customize email properties in the application.yml file to fit your specific email server configuration.
+1. Add the `@EnableCSEmail` annotation to your main application class.
+2. Customize email properties in the `application.yml` file under the `cs.email` prefix.
+3. Inject the configured `JavaMailSender` bean into your services or controllers for sending emails.

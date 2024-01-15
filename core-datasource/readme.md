@@ -1,20 +1,22 @@
-# core-datasource Module
+# DataSource Module
 
-The core-datasource module provides essential configurations for DataSources using HikariCP. It offers standardized DataSource setup for Oracle and MSSQL databases.
+## Description
+
+The DataSource module simplifies database connectivity in CS Framework by providing configurations for H2, MSSQL, and Oracle databases. It supports dynamic switching between different database implementations through YAML configuration.
 
 ## Usage
 
-- Include this module as a dependency to enable centralized DataSource management.
-- Use the provided DataSourceConfig class to configure and create Oracle and MSSQL DataSources.
+- Annotate your application with `@EnableCSDataSource` to enable data source configuration.
+- Specify the desired database type in the YAML configuration (`cs.datasource.type`) to dynamically switch between H2, MSSQL, and Oracle.
 
 ## Why to Use
 
-- Centralized management of database connections with standardized configurations.
-- Enables developers to easily switch between Oracle and MSSQL databases.
+- Streamlines database connectivity with multiple implementations (H2, MSSQL, Oracle).
+- Provides flexibility to switch databases dynamically based on application requirements.
+- Promotes clean code by separating data source configurations from application logic.
 
 ## How to Use
 
-1. Add this module as a dependency in your project.
-2. Import the DataSourceConfig class in your application configuration.
-3. Use **@Autowired** to inject the desired DataSource (e.g., @Autowired @Qualifier("oracleDataSource") DataSource dataSource).
-4. Customize properties in the application.yml file to fit your specific database configurations.
+1. Add the `@EnableCSDataSource` annotation to your main application class.
+2. Specify the desired database type in the YAML configuration (`cs.datasource.type`).
+3. Customize database-specific properties in the respective configuration classes.

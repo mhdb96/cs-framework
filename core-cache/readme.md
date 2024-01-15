@@ -1,20 +1,23 @@
-# core-cache Module
+# Cache Module
 
-The core-cache module provides configurations for Infinispan caching to enhance application performance. It includes the setup for an embedded cache manager with customizable cache properties.
+## Description
+
+The Cache module in CS Framework leverages Infinispan to provide a flexible caching solution for applications. It allows developers to easily configure and use different cache configurations, such as long-term, medium-term, and short-term caches, each with its own Time-To-Live (TTL) settings.
 
 ## Usage
 
-- Include this module as a dependency to enable caching capabilities.
-- Utilize the CacheConfig class for configuring and creating the Infinispan cache manager.
+- Annotate your application with `@EnableCSCache` to enable caching configuration.
+- Use the provided cache names (`longterm-cache`, `mediumterm-cache`, `shortterm-cache`) in your application to utilize specific cache configurations.
+- Implement caching in your code using Spring's `@Cacheable` annotation and referencing the configured cache names.
 
 ## Why to Use
 
 - Improves application performance by caching frequently accessed data.
-- Allows for efficient data storage and retrieval, reducing database load.
+- Configurable cache settings cater to various use cases with different TTLs.
+- Enhances code readability and maintainability by centralizing caching configurations.
 
 ## How to Use
 
-1. Add this module as a dependency in your project.
-2. Import the CacheConfig class in your application configuration.
-3. Use the @Cacheable annotation on methods or classes to enable caching.
-4. Customize cache properties in the application.yml file to fit your specific caching needs.
+1. Add the `@EnableCSCache` annotation to your main application class.
+2. Use the provided cache names in your code with the `@Cacheable` annotation.
+3. Customize caching behavior by adjusting TTLs in the CacheConfig class.

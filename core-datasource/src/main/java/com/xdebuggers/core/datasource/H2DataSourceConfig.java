@@ -25,7 +25,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ConditionalOnProperty(name = "cs.datasource.type", havingValue = "h2")
-@EnableJpaRepositories(basePackages = "com.xdebuggers.core.repository.h2", entityManagerFactoryRef = "h2EntityManagerFactory", transactionManagerRef = "h2TransactionManager")
+@EnableJpaRepositories(basePackages = "com.xdebuggers.**.repository.h2", entityManagerFactoryRef = "h2EntityManagerFactory", transactionManagerRef = "h2TransactionManager")
 public class H2DataSourceConfig {
 
     /**
@@ -67,7 +67,7 @@ public class H2DataSourceConfig {
             JpaProperties jpaProperties) {
         return builder
                 .dataSource(dataSource)
-                .packages("com.xdebuggers.core.model.h2")
+                .packages("com.xdebuggers.**.model.h2")
                 .persistenceUnit("h2")
                 .properties(jpaProperties.getProperties())
                 .build();
